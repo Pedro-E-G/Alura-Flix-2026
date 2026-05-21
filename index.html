@@ -1,15 +1,274 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <title Minha Primeira página</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Guiminamflix</title>
+    
+    <style>
+        /* Variáveis de cores para facilitar personalizações futuras */
+        :root {
+            --cor-fundo: #0a0a0c;
+            --cor-primaria: #ff0055; /* Rosa/Vermelho Neon */
+            --cor-texto-claro: #ffffff;
+            --cor-texto-cinza: #a3a3a3;
+            --cor-card-fundo: #16161a;
+            --fonte-principal: "Chakra Petch", sans-serif;
+            --transicao-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Estilos Gerais e Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-claro);
+            font-family: var(--fonte-principal);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(to bottom, rgba(10, 10, 12, 0.95), rgba(10, 10, 12, 0));
+            padding: 1.5rem 5%;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--cor-primaria);
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+            letter-spacing: 2px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Seção Principal / Chamada */
+        .chamada {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem 5% 4rem 5%;
+            background: radial-gradient(circle at top right, rgba(255, 0, 85, 0.15), transparent 60%);
+            min-height: 70vh;
+            justify-content: center;
+        }
+
+        @media (min-width: 992px) {
+            .chamada {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 4rem;
+            }
+        }
+
+        .chamada-texto {
+            flex: 1;
+        }
+
+        .chamada-texto h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #fff, var(--cor-texto-cinza));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (min-width: 768px) {
+            .chamada-texto h1 {
+                font-size: 4rem;
+            }
+        }
+
+        .chamada-texto p {
+            display: inline-block;
+            background-color: rgba(255, 0, 85, 0.2);
+            color: var(--cor-primaria);
+            border: 1px solid var(--cor-primaria);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
+        }
+
+        /* Container de Vídeo Proporcional */
+        .chamada-video-container {
+            flex: 1.2;
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                        0 0 30px rgba(255, 0, 85, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transicao-suave);
+        }
+
+        .chamada-video-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 
+                        0 0 40px rgba(255, 0, 85, 0.25);
+            border-color: rgba(255, 0, 85, 0.4);
+        }
+
+        .chamada-video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Seção das Categorias de Vídeos */
+        .categoria {
+            padding: 2rem 5% 6rem 5%;
+        }
+
+        .categoria h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .categoria h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50%;
+            height: 3px;
+            background-color: var(--cor-primaria);
+            border-radius: 2px;
+            box-shadow: 0 0 8px var(--cor-primaria);
+        }
+
+        .categoria-videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Cards de Vídeos */
+        .categoria-videos a {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            display: block;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            background-color: var(--cor-card-fundo);
+            transition: var(--transicao-suave);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .categoria-videos img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transicao-suave);
+        }
+
+        /* Hover nos Cards */
+        .categoria-videos a:hover {
+            transform: translateY(-8px) scale(1.04);
+            border-color: var(--cor-primaria);
+            box-shadow: 0 10px 25px rgba(255, 0, 85, 0.2);
+            z-index: 10;
+        }
+
+        .categoria-videos a:hover img {
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        /* Efeito de Play Icon nos Cards no Hover */
+        .categoria-videos a::before {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            font-size: 2rem;
+            color: #fff;
+            background-color: rgba(255, 0, 85, 0.85);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transicao-suave);
+            z-index: 2;
+            pointer-events: none;
+            padding-left: 4px; /* Ajuste óptico do ícone de play */
+        }
+
+        .categoria-videos a:hover::before {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
 </head>
-<body>
-    <h1>Bem-vindo ao meu site</h1>
 
-<p>Este é um parágrafo sobre <strong>aprendizado</strong>.</p>
-
-<a href="https://google.com">Clique aqui para pesquisar</a>
 <body>
+    <!-- Topo da página -->
+    <header>GUIMINAMFLIX</header>
+
+    <!-- Destaque Principal -->
+    <section class="chamada">
+        <div class="chamada-texto">
+            <h1>ATRAVÉS DO ARANHAVERSO</h1>
+            <p>#homem-aranha</p>
+        </div>
+
+        <div class="chamada-video-container">
+            <iframe src="https://www.youtube.com/embed/gt_fAE1Eg2Q?si=EEv-tsY_b1B2OwKE"
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Grid de Filmes e Séries adicionais -->
+    <section class="categoria">
+        <h2>Filmes e séries recomendadas</h2>
+        <div class="categoria-videos">
+            <a href="https://www.youtube.com/watch?v=cs15QqG6Gjc" target="_blank" rel="noopener noreferrer">
+                <img src="https://img.youtube.com/vi/cs15QqG6Gjc/maxresdefault.jpg" alt="Miniatura do Filme 1" />
+            </a>
+            <a href="https://www.youtube.com/watch?v=nCmIwcycUJ8" target="_blank" rel="noopener noreferrer">
+                <img src="https://img.youtube.com/vi/nCmIwcycUJ8/maxresdefault.jpg" alt="Miniatura do Filme 2" />
+            </a>
+            <a href="https://www.youtube.com/watch?v=FvRmEapoHRc" target="_blank" rel="noopener noreferrer">
+                <img src="https://img.youtube.com/vi/FvRmEapoHRc/maxresdefault.jpg" alt="Miniatura do Filme 3" />
+            </a>
+            <a href="https://www.youtube.com/watch?v=Ipkw_hWW-Hw" target="_blank" rel="noopener noreferrer">
+                <img src="https://img.youtube.com/vi/Ipkw_hWW-Hw/maxresdefault.jpg" alt="Miniatura do Filme 4" />
+            </a>
+            <a href="https://www.youtube.com/watch?v=d4DzMNGoyis" target="_blank" rel="noopener noreferrer">
+                <img src="https://img.youtube.com/vi/d4DzMNGoyis/maxresdefault.jpg" alt="Miniatura do Filme 5" />
+            </a>
+        </div>
+    </section>
+
+</body>
+
 </html>
-      
