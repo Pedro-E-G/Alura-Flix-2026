@@ -1,6 +1,7 @@
 body {
     color: white;
-    background: black;
+    background: #020024;
+background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(5, 3, 68, 1) 13%, rgba(5, 4, 77, 1) 17%, rgba(9, 9, 121, 1) 35%, rgba(8, 69, 161, 1) 53%, rgba(4, 128, 199, 1) 73%, rgba(5, 4, 73, 1) 100%, rgba(1, 186, 237, 1) 100%, rgba(0, 212, 255, 1) 100%);
     margin: 0px;
     font-family: "Chakra Petch", sans-serif;
     margin-bottom: 100px;
