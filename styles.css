@@ -8,14 +8,14 @@ background: linear-gradient(0deg,rgba(10, 9, 9, 1) 0%, rgba(23, 20, 20, 1) 37%, 
 }
 
 header {
-    border-bottom: solid 2px rgb(220, 238, 19);
+    border-bottom: solid 2px rgb(15, 15, 15);
     padding: 20px;
     font-size: 32px;
-    color: rgb(43, 177, 222);
+    color: rgb(16, 17, 17);
 }
 
 .chamada {
-    background: rgb(33, 2, 2);
+    background: rgb(40, 4, 160);
     padding-bottom: 80px;
     padding-top: 80px;
     display: flex;
